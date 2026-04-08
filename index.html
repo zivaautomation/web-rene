@@ -468,6 +468,41 @@
         }
         .paquete-features li::before { content: '✓'; color: var(--terracotta); font-weight: 600; flex-shrink: 0; }
 
+        /* ─── SECCIÓN FEMENINA ─── */
+        #mujeres {
+            background: linear-gradient(135deg, var(--blush-light) 0%, #EDD5C8 60%, var(--blush) 100%);
+            color: var(--espresso);
+        }
+        .women-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .women-image {
+            background: rgba(181,112,79,0.08);
+            aspect-ratio: 4/5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--mocha);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            border: 1px solid rgba(181,112,79,0.18);
+            order: 2;
+        }
+        .women-content { order: 1; }
+        #mujeres .section-tag { color: var(--terracotta); }
+        #mujeres h2 { color: var(--espresso); }
+        #mujeres h2 em { color: var(--terracotta); }
+        #mujeres p { color: var(--mocha); line-height: 1.8; margin-bottom: 1.5rem; }
+        .women-zonas { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0; }
+        .women-zona-tag {
+            border: 1px solid rgba(181,112,79,0.5);
+            color: var(--terracotta-dark);
+            padding: 6px 14px;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            background: rgba(255,255,255,0.4);
+        }
+
         /* ─── SECCIÓN MASCULINA ─── */
         #hombres {
             background: var(--espresso);
@@ -683,6 +718,72 @@
         }
         .mobile-sticky-cta a { display: block; text-align: center; }
 
+        /* ─── MOBILE MENU ─── */
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+            background: none;
+            border: none;
+        }
+        .nav-hamburger span {
+            display: block;
+            width: 22px;
+            height: 1.5px;
+            background: var(--espresso);
+            transition: transform 0.3s, opacity 0.3s;
+        }
+        .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+        .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+        .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+        .mobile-nav {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0; right: 0;
+            background: rgba(254,252,250,0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 8px 24px rgba(46,21,8,0.08);
+            flex-direction: column;
+            padding: 8px 0 16px;
+        }
+        .mobile-nav.open { display: flex; }
+        .mobile-nav a {
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: var(--mocha);
+            text-decoration: none;
+            letter-spacing: 0.12em;
+            padding: 14px 5vw;
+            border-bottom: 1px solid var(--border);
+            transition: color 0.2s, background 0.2s;
+        }
+        .mobile-nav a:hover { color: var(--terracotta); background: var(--cream); }
+        .mobile-nav a:last-child { border-bottom: none; }
+        .mobile-nav .mobile-nav-cta {
+            margin: 12px 5vw 0;
+            background: var(--terracotta);
+            color: white;
+            text-align: center;
+            padding: 14px 5vw;
+            border-bottom: none;
+            display: block;
+        }
+        .mobile-nav .mobile-nav-cta:hover { background: var(--terracotta-dark); color: white; }
+
+        /* ─── ZONAS TABS SCROLLBAR ─── */
+        .zonas-tabs {
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .zonas-tabs::-webkit-scrollbar { display: none; }
+
         /* ─── ANIMATIONS ─── */
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(24px); }
@@ -707,6 +808,8 @@
 
         @media (max-width: 768px) {
             :root { --top-bar-h: 40px; }
+            .nav-hamburger { display: flex; }
+            .wa-float { bottom: 80px; }
             .hero { grid-template-columns: 1fr; min-height: auto; }
             .hero-image { height: 300px; order: -1; }
             .hero-content { padding: 40px 5vw 50px; text-align: center; }
@@ -724,6 +827,9 @@
             .zonas-tabs { overflow-x: auto; }
             .zonas-content.active { grid-template-columns: 1fr 1fr; }
             .paquetes-grid { grid-template-columns: 1fr; }
+            .women-grid { grid-template-columns: 1fr; }
+            .women-image { display: none; }
+            .women-content { order: 1; }
             .men-grid { grid-template-columns: 1fr; }
             .men-image { display: none; }
             .proceso-grid { grid-template-columns: 1fr 1fr; }
@@ -759,6 +865,16 @@
             <li><a href="#faq">Dudas</a></li>
         </ul>
         <a href="https://wa.me/5493513000000" class="nav-cta">Reservar Turno</a>
+        <button class="nav-hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+            <a href="#resultados">Resultados</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#proceso">¿Cómo funciona?</a>
+            <a href="#faq">Dudas</a>
+            <a href="https://wa.me/5493513000000" class="mobile-nav-cta">Reservar Turno</a>
+        </div>
     </nav>
 
     <!-- HERO -->
@@ -904,12 +1020,12 @@
         </div>
 
         <div class="zonas-tabs">
-            <button class="zona-tab active" data-tab="mujer">Para Ella</button>
-            <button class="zona-tab" data-tab="hombre">Para Él</button>
-            <button class="zona-tab" data-tab="paquetes">Paquetes Combo</button>
+            <button class="zona-tab active" data-tab="paquetes">Paquetes Combo</button>
+            <button class="zona-tab" data-tab="mujer">MUJERES</button>
+            <button class="zona-tab" data-tab="hombre">HOMBRES</button>
         </div>
 
-        <div class="zonas-content active" id="tab-mujer">
+        <div class="zonas-content" id="tab-mujer">
             <div class="zona-item">
                 <div class="zona-icon">💆</div>
                 <div class="zona-name">Axilas</div>
@@ -999,7 +1115,7 @@
             </div>
         </div>
 
-        <div class="zonas-content" id="tab-paquetes">
+        <div class="zonas-content active" id="tab-paquetes">
             <div class="paquetes-grid" style="grid-column: 1/-1; background: transparent;">
                 <div class="paquete-card">
                     <div class="paquete-name">Starter</div>
@@ -1049,16 +1165,42 @@
     </section>
 
     <!-- SECCIÓN MASCULINA -->
+    <!-- SECCIÓN MUJERES -->
+    <section id="mujeres">
+        <div class="women-grid">
+            <div class="women-content">
+                <span class="section-tag">Tratamientos para</span>
+                <h2><em>Mujeres</em></h2>
+                <p>Cada zona tiene su propio protocolo. Adaptamos la potencia, la frecuencia y los parámetros del láser al tipo de vello y tono de piel de cada clienta para resultados reales y duraderos.</p>
+                <p>Desde las zonas más clásicas hasta tratamientos completos, te acompañamos en cada sesión con profesionalismo y cuidado genuino.</p>
+                <div class="women-zonas">
+                    <span class="women-zona-tag">Axilas</span>
+                    <span class="women-zona-tag">Piernas</span>
+                    <span class="women-zona-tag">Zona bikini</span>
+                    <span class="women-zona-tag">Brazos</span>
+                    <span class="women-zona-tag">Abdomen</span>
+                    <span class="women-zona-tag">Bozo</span>
+                    <span class="women-zona-tag">Full body</span>
+                </div>
+                <a href="https://wa.me/5493513000000" class="btn-primary">Reservar mi turno</a>
+            </div>
+            <div class="women-image">
+                <span style="font-size:0.72rem; text-transform:uppercase; letter-spacing:0.15em;">Foto mujer · Reemplazar</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN HOMBRES -->
     <section id="hombres">
         <div class="men-grid">
             <div class="men-image">
                 <span style="font-size:0.72rem; text-transform:uppercase; letter-spacing:0.15em;">Foto hombre · Reemplazar</span>
             </div>
             <div>
-                <span class="section-tag">Tratamientos para ellos</span>
-                <h2>Pensado <em>especialmente</em><br>para el hombre moderno</h2>
+                <span class="section-tag">Tratamientos para</span>
+                <h2><em>Hombres</em></h2>
                 <p>El vello masculino tiene una densidad y estructura diferente. Por eso desarrollamos protocolos exclusivos con mayor potencia y tiempos de disparo optimizados para resultados superiores.</p>
-                <p>Cero tabúes. Muchos de nuestros clientes vienen por incomodidad en deportes, trabajo o simplemente porque buscan sentirse mejor en su piel.</p>
+                <p>Muchos de nuestros clientes vienen por incomodidad en deportes, trabajo o simplemente porque buscan sentirse mejor en su piel.</p>
                 <div class="men-zonas">
                     <span class="men-zona-tag">Espalda</span>
                     <span class="men-zona-tag">Pecho</span>
@@ -1163,7 +1305,8 @@
                     <li><a href="#resultados">Resultados</a></li>
                     <li><a href="#servicios">Zonas y precios</a></li>
                     <li><a href="#proceso">Cómo funciona</a></li>
-                    <li><a href="#hombres">Para ellos</a></li>
+                    <li><a href="#mujeres">Para mujeres</a></li>
+                    <li><a href="#hombres">Para hombres</a></li>
                     <li><a href="#faq">Preguntas</a></li>
                 </ul>
             </div>
@@ -1200,10 +1343,28 @@
     </div>
 
     <script>
+        // ─── HAMBURGER MENU ───
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobile-nav');
+        hamburger.addEventListener('click', () => {
+            const isOpen = mobileNav.classList.toggle('open');
+            hamburger.classList.toggle('open', isOpen);
+            hamburger.setAttribute('aria-expanded', isOpen);
+            mobileNav.setAttribute('aria-hidden', !isOpen);
+        });
+        mobileNav.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
+                mobileNav.classList.remove('open');
+                hamburger.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+                mobileNav.setAttribute('aria-hidden', 'true');
+            });
+        });
+
         // ─── NAV SCROLL ───
         const nav = document.getElementById('nav');
         let lastScroll = 0;
-        const TOP_BAR_H = 36;
+        const TOP_BAR_H = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--top-bar-h')) || 36;
 
         window.addEventListener('scroll', () => {
             const currentScroll = window.pageYOffset;
